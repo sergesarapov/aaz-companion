@@ -1,6 +1,6 @@
 # AAZ Companion
 
-A web-based companion app for the solo tabletop RPG **Alone Against the Zone** by Alexey Aparin and Andrea Sfiligoi (Ganesha Games). Currently in **BETA**.
+A web-based companion app for the solo tabletop RPG **Alone Against the Zone** by Alexey Aparin and Andrea Sfiligoi (Ganesha Games). Currently in **BETA**!
 
 ## Disclaimer
 
