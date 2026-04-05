@@ -32,7 +32,7 @@ const AdventureLogInput = memo(({ onAdd }: { onAdd: (text: string) => void }) =>
         onChange={(e) => setText(e.target.value)}
       />
       <button
-        className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        className="mt-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded"
         onClick={handleAdd}
       >
         Add Log Entry
@@ -228,7 +228,7 @@ export const AloneAgainstZoneApp: React.FC = () => {
       </p>
       <div className="flex flex-wrap gap-4 mb-4">
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+          className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
           onClick={() => navigate('/')}
         >
           Home
@@ -254,7 +254,7 @@ export const AloneAgainstZoneApp: React.FC = () => {
           Save Progress
         </button>
       </div>
-      <div className="dark:bg-gray-800 bg-gray-100  p-4 space-y-2 rounded">
+      <div className="dark:bg-zinc-900 bg-gray-100/80  p-4 space-y-2 rounded">
         <h2 className="text-lg font-bold mb-4 dark:text-white text-gray-800">Zone Exploration</h2>
         <DiceRoller title="Exploration (2d6)" d="2d6" />
         <DiceRoller title="Terrain and feature (d6)" d="d6" />
@@ -279,7 +279,7 @@ export const AloneAgainstZoneApp: React.FC = () => {
       <h2 className="text-xl font-bold mt-6 mb-2">Encounters</h2>
       <div>
         <button
-          className="mb-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+          className="mb-4 bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
           onClick={addNewEncounter}
         >
           + New Encounter

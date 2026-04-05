@@ -182,7 +182,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
   };
 
   return (
-    <div className="dark:bg-gray-800 dark:text-white p-4 bg-gray-100 rounded-b rounded-tr">
+    <div className="dark:bg-zinc-900 dark:text-white p-4 bg-gray-100/80 rounded-b rounded-tr">
       {isEditMode ? (
         <div className="flex flex-col flex-wrap">
           <div className="flex space-x-4">
@@ -416,7 +416,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               />
               <button
                 onClick={addEquipment}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+                className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
               >
                 + Add Equipment
               </button>
@@ -447,7 +447,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               />
               <button
                 onClick={addSkill}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+                className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
               >
                 + Add Skill
               </button>
@@ -525,7 +525,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               />
               <button
                 onClick={addWeapon}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+                className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
               >
                 + Add Weapon
               </button>
@@ -548,7 +548,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                 setOperative(localOperative);
                 toggleEditMode();
               }}
-              className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600 transition-colors"
+              className="bg-emerald-600 text-white px-4 py-2 rounded mt-4 hover:bg-emerald-700 transition-colors"
             >
               Save
             </button>
@@ -564,7 +564,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
             <div>
               <button
                 onClick={toggleEditMode}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
               >
                 Edit
               </button>
@@ -653,7 +653,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               </button>
               {attackRoll !== null && (
                 <div className="animate-bounce-in">
-                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white px-2 py-1 rounded shadow-lg flex items-center justify-center min-w-[40px] h-[40px]">
+                  <div className="bg-gradient-to-br from-zinc-500 to-emerald-600 text-white px-2 py-1 rounded shadow-lg flex items-center justify-center min-w-[40px] h-[40px]">
                     <p className="text-2xl font-bold">{attackRoll}</p>
                   </div>
                 </div>
@@ -687,7 +687,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               </button>
               {defenseRoll !== null && (
                 <div className="animate-bounce-in">
-                  <div className="bg-gradient-to-br from-amber-400 to-orange-500 text-white px-2 py-1 rounded shadow-lg flex items-center justify-center min-w-[40px] h-[40px]">
+                  <div className="bg-gradient-to-br from-zinc-400 to-orange-500 text-white px-2 py-1 rounded shadow-lg flex items-center justify-center min-w-[40px] h-[40px]">
                     <p className="text-2xl font-bold">{defenseRoll}</p>
                   </div>
                 </div>

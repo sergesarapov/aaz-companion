@@ -44,8 +44,8 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({ title, d }) => {
         <button
           onClick={rollDice}
           disabled={isRolling}
-          className="relative bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-2 h-[40px] rounded
-                     hover:from-blue-600 hover:to-blue-700 transition-all duration-300
+          className="relative bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-3 py-2 h-[40px] rounded
+                     hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300
                      shadow-lg hover:shadow-xl
                      disabled:opacity-50 disabled:cursor-not-allowed
                      font-medium flex items-center gap-2"
@@ -64,7 +64,7 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({ title, d }) => {
 
         {result !== null && (
           <div className="animate-bounce-in">
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white px-2 py-1 rounded shadow-lg flex items-center justify-center min-w-[40px] h-[40px]">
+            <div className="bg-gradient-to-br from-zinc-500 to-zinc-600 text-white px-2 py-1 rounded shadow-lg flex items-center justify-center min-w-[40px] h-[40px]">
               <p className="text-2xl font-bold">{result}</p>
             </div>
           </div>

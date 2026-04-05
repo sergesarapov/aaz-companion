@@ -48,11 +48,11 @@ export const Home: React.FC = () => {
     <div className="flex flex-col items-center gap-4">
       <button
         onClick={createNewZone}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+        className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-colors"
       >
-        Delve into a new zone
+        Enter a new zone
       </button>
-      <label className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+      <label className="cursor-pointer bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors">
         Load existing zone
         <input
           type="file"

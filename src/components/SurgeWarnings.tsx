@@ -23,7 +23,7 @@ export const SurgeWarnings: React.FC<SurgeWarningsProps> = ({ filled, setFilled 
   };
 
   return (
-    <div className="dark:bg-gray-800 bg-gray-100 p-4 rounded mt-4 mb-4">
+    <div className="dark:bg-zinc-900 bg-gray-100/80 p-4 rounded mt-4 mb-4">
       <h2 className="text-lg font-bold mb-2 dark:text-white text-gray-800">
         Surge Warnings ({filled}/{total})
       </h2>
