@@ -16,7 +16,6 @@ This companion app is unofficial and not affiliated with or endorsed by Ganesha 
 - **Dice Roller**: Roll d6, d66, 2d6, or 3d6 with animated floating dice
 - **Path Tracking**: Record your path through the zone
 - **Adventure Log**: Timestamped log entries for session notes
-- **Operative Migration**: Carry an operative over from a previous zone into a new adventure
 - **Dark Mode**: Toggle light/dark theme
 - **Persistent Storage**: Everything auto-saves to localStorage per zone
 - **Save/Load**: Export and import a zone as a JSON backup file
