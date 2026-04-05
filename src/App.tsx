@@ -1,0 +1,66 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AloneAgainstZoneApp } from './AloneAgainstZoneApp';
+import { Home } from './Home';
+import { DarkModeToggle } from './components/DarkModeToggle';
+// import { HelpModal } from './components/HelpModal';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
+
+const App: React.FC = () => {
+  // const [isHelpModalOpen, setIsHelpModalOpen] = useState<boolean>(false);
+
+  return (
+    <div className="min-h-[100vh] flex flex-col justify-between relative dark:bg-black dark:text-white max-w-screen-lg mx-auto p-4">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold place-self-start flex items-center gap-2">
+            AAZ Companion
+            <span className="text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 px-2 py-0.5 rounded-full">BETA</span>
+          </h1>
+        <div className="flex flex-col items-end gap-2">
+          <DarkModeToggle />
+          {/* <button
+            onClick={() => setIsHelpModalOpen(true)}
+            className="bg-blue-100 hover:bg-blue-200 text-blue-800 dark:bg-blue-900/30 dark:hover:bg-blue-800/40 dark:text-blue-300 px-3 py-1 rounded text-sm transition-colors"
+          >
+            Help 🔮
+          </button> */}
+        </div>
+      </div>
+      <Routes>
+        <Route path="/zone/:slug" element={<AloneAgainstZoneApp />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <footer className="dark:bg-gray-800 bg-gray-200 mt-8 py-4 px-6 text-center">
+        <p className="text-sm dark:text-slate-400 text-gray-600">
+          Alone Against the Zone is a game by Alexey Aparin and Andrea Sfiligoi, published by Ganesha Games.
+          <br />
+          Official website:{' '}
+          <a
+            href="https://www.ganeshagames.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            www.ganeshagames.net
+          </a>
+        </p>
+        <p className="text-sm dark:text-slate-400 text-gray-600 mt-2">
+          Disclaimer: This companion app is not part of the official Alone Against the Zone game and
+          is not affiliated with or endorsed by Ganesha Games.
+        </p>
+      </footer>
+      {/* <HelpModal isOpen={isHelpModalOpen} onClose={() => setIsHelpModalOpen(false)} /> */}
+    </div>
+  );
+};
+
+const AppWrapper: React.FC = () => (
+  <Router>
+    <App />
+    <SpeedInsights />
+    <Analytics />
+  </Router>
+);
+
+export default AppWrapper;
