@@ -105,14 +105,17 @@ export const AloneAgainstZoneApp: React.FC = () => {
   const [surgeWarnings, setSurgeWarnings] = useState<number>(
     savedSurgeWarnings ? JSON.parse(savedSurgeWarnings) : 0,
   );
-  const [pathHexes, setPathHexes] = useState<string[]>(
-    savedPath ? JSON.parse(savedPath) : [],
-  );
+  const [pathHexes, setPathHexes] = useState<string[]>(savedPath ? JSON.parse(savedPath) : []);
 
   const [hexState, setHexState] = useState<HexGridState>(() => {
     if (savedHexGrid) {
       const parsed = JSON.parse(savedHexGrid);
-      return { cells: new Map(parsed.cells), cols: parsed.cols, rows: parsed.rows, westExpansions: parsed.westExpansions ?? 0 };
+      return {
+        cells: new Map(parsed.cells),
+        cols: parsed.cols,
+        rows: parsed.rows,
+        westExpansions: parsed.westExpansions ?? 0,
+      };
     }
     return { cells: new Map(), cols: INIT_COLS, rows: INIT_ROWS, westExpansions: 0 };
   });
@@ -160,12 +163,15 @@ export const AloneAgainstZoneApp: React.FC = () => {
   }, [pathHexes, slug]);
 
   useEffect(() => {
-    localStorage.setItem(`aaz-hexgrid-${slug}`, JSON.stringify({
-      cells: Array.from(hexState.cells.entries()),
-      cols: hexState.cols,
-      rows: hexState.rows,
-      westExpansions: hexState.westExpansions,
-    }));
+    localStorage.setItem(
+      `aaz-hexgrid-${slug}`,
+      JSON.stringify({
+        cells: Array.from(hexState.cells.entries()),
+        cols: hexState.cols,
+        rows: hexState.rows,
+        westExpansions: hexState.westExpansions,
+      }),
+    );
   }, [hexState, slug]);
 
   const addNewEncounter = (): void => {
@@ -205,13 +211,16 @@ export const AloneAgainstZoneApp: React.FC = () => {
     setOperativePosition(pos);
   }, []);
 
-  const handleSetOperative = useCallback((newOperative: Character) => {
-    setOperative({
-      ...newOperative,
-      id: newOperative.id ? newOperative.id : ulid(),
-      key: newOperative.key ? newOperative.key : `aaz-operative-${slug}`,
-    });
-  }, [slug]);
+  const handleSetOperative = useCallback(
+    (newOperative: Character) => {
+      setOperative({
+        ...newOperative,
+        id: newOperative.id ? newOperative.id : ulid(),
+        key: newOperative.key ? newOperative.key : `aaz-operative-${slug}`,
+      });
+    },
+    [slug],
+  );
 
   const navigate = useNavigate();
 
@@ -258,24 +267,23 @@ export const AloneAgainstZoneApp: React.FC = () => {
         <h2 className="text-lg font-bold mb-4 dark:text-white text-gray-800">Zone Exploration</h2>
         <DiceRoller title="Exploration (2d6)" d="2d6" />
         <DiceRoller title="Terrain and feature (d6)" d="d6" />
-        <DiceRoller title="Encounter / Items table (d6)" d="d6" />
-        <DiceRoller title="Encounter / Items type (d66)" d="d66" />
-        <DiceRoller title="Encounter / Items type (d6)" d="d6" />
-        <DiceRoller title="Encounter / Items type (2d6)" d="2d6" />
+        <DiceRoller title="Encounters / Items table (d6)" d="d6" />
+        <hr />
+        <DiceRoller title="Encounter / Item type (d66)" d="d66" />
+        <DiceRoller title="Encounter / Item type (d6)" d="d6" />
+        <DiceRoller title="Encounter / Item type (2d6)" d="2d6" />
       </div>
       <SurgeWarnings filled={surgeWarnings} setFilled={setSurgeWarnings} />
       <HexGrid
-        hexState={hexState} setHexState={setHexState}
-        position={operativePosition} onPositionUpdate={handleOperativePosition}
+        hexState={hexState}
+        setHexState={setHexState}
+        position={operativePosition}
+        onPositionUpdate={handleOperativePosition}
       />
       <h2 className="text-xl font-bold mt-6 mb-2">Path</h2>
       <Path hexes={pathHexes} onChange={setPathHexes} />
       <h2 className="text-xl font-bold mt-6 mb-2">Operative</h2>
-      <OperativeCard
-        key={operative.id}
-        operative={operative}
-        setOperative={handleSetOperative}
-      />
+      <OperativeCard key={operative.id} operative={operative} setOperative={handleSetOperative} />
       <h2 className="text-xl font-bold mt-6 mb-2">Encounters</h2>
       <div>
         <button
