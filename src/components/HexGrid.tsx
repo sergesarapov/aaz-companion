@@ -27,6 +27,7 @@ import {
   Radiation,
   Crosshair,
   Footprints,
+  ChevronDown,
   type LucideIcon,
 } from 'lucide-react';
 import { FaHelicopter } from 'react-icons/fa';
@@ -296,6 +297,19 @@ function HexModal({ isOpen, col, row, cell, onClose, onUpdate, terrains }: HexMo
     String(cell.scavengeAttempts || ''),
   );
   const [echoSectors, setEchoSectors] = useState<string>(String(cell.echoSectors || ''));
+  const [featuresOpen, setFeaturesOpen] = useState(false);
+  const featuresRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!featuresOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (featuresRef.current && !featuresRef.current.contains(e.target as Node)) {
+        setFeaturesOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [featuresOpen]);
 
   // Sync state with cell prop when modal opens
   useLayoutEffect(() => {
@@ -348,29 +362,43 @@ function HexModal({ isOpen, col, row, cell, onClose, onUpdate, terrains }: HexMo
         </div>
 
         {/* Features */}
-        <div className="mb-4">
-          <label className="block text-sm text-gray-500 dark:text-zinc-400 mb-2">Features</label>
-          <div className="space-y-1 max-h-40 overflow-y-auto bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-600 rounded p-2">
-            {FEATURES.map((f, i) => (
-              <label
-                key={i}
-                className="flex items-center text-sm text-gray-600 dark:text-zinc-300 cursor-pointer hover:text-emerald-600 dark:hover:text-emerald-400"
-              >
-                <input
-                  type="checkbox"
-                  checked={features.includes(i)}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setFeatures([...features, i]);
-                    } else {
-                      setFeatures(features.filter((fIdx) => fIdx !== i));
-                    }
-                  }}
-                  className="mr-2 cursor-pointer"
-                />
-                {f.name}
-              </label>
-            ))}
+        <div className="mb-4" ref={featuresRef}>
+          <label className="block text-sm text-gray-500 dark:text-zinc-400 mb-1">Features</label>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setFeaturesOpen((o) => !o)}
+              className="w-full bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-600 text-gray-800 dark:text-zinc-100 text-sm rounded px-2 py-1 text-left flex items-center justify-between"
+            >
+              <span className="truncate">
+                {features.length === 0 ? 'None' : features.map((i) => FEATURES[i].name).join(', ')}
+              </span>
+              <ChevronDown className="w-4 h-4 shrink-0 ml-1" />
+            </button>
+            {featuresOpen && (
+              <div className="absolute z-10 mt-1 w-full bg-white dark:bg-zinc-800 border border-gray-300 dark:border-zinc-600 rounded shadow-lg max-h-48 overflow-y-auto">
+                {FEATURES.map((f, i) => (
+                  <label
+                    key={i}
+                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-700 dark:text-zinc-300 hover:bg-gray-100 dark:hover:bg-zinc-700 cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={features.includes(i)}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setFeatures([...features, i]);
+                        } else {
+                          setFeatures(features.filter((fIdx) => fIdx !== i));
+                        }
+                      }}
+                      className="cursor-pointer"
+                    />
+                    {f.name}
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

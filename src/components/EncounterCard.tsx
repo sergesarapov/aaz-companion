@@ -63,7 +63,7 @@ export const EncounterCard: React.FC<EncounterCardProps> = ({
                 type="text"
                 value={tempName}
                 onChange={handleNameInputChange}
-                className="text-2xl font-bold bg-transparent border-b-2 border-blue-500 focus:outline-none focus:border-blue-600 w-[180px]"
+                className="text-2xl font-bold bg-transparent border-b-2 border-blue-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 w-[180px]"
                 autoFocus
               />
               <button
@@ -120,7 +120,7 @@ export const EncounterCard: React.FC<EncounterCardProps> = ({
                   count: parseInt(e.target.value, 10),
                 }))
               }
-              className="dark:bg-gray-800 mt-1 block w-[80px] p-2 border border-gray-300 rounded"
+              className="dark:bg-gray-800 mt-1 block w-[80px] p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
             >
               {[...Array(21)].map((_, i) => (
                 <option key={i + 1} value={i + 1}>
@@ -168,7 +168,7 @@ export const EncounterCard: React.FC<EncounterCardProps> = ({
                 name="level"
                 value={localEncounter.level}
                 onChange={handleInputChange}
-                className="dark:bg-gray-800 mt-1 block w-full p-2 border border-gray-300 rounded"
+                className="dark:bg-gray-800 mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
               >
                 {[...Array(10)].map((_, i) => (
                   <option key={i + 1} value={i + 1}>
@@ -189,7 +189,7 @@ export const EncounterCard: React.FC<EncounterCardProps> = ({
                 name="attacksPerRound"
                 value={localEncounter.attacksPerRound}
                 onChange={handleInputChange}
-                className="dark:bg-gray-800 mt-1 block w-full p-2 border border-gray-300 rounded"
+                className="dark:bg-gray-800 mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
               >
                 {[...Array(10)].map((_, i) => (
                   <option key={i + 1} value={i + 1}>
@@ -210,7 +210,7 @@ export const EncounterCard: React.FC<EncounterCardProps> = ({
                 name="notes"
                 value={localEncounter.notes}
                 onChange={handleInputChange}
-                className="dark:bg-gray-800 mt-1 block w-full p-2 border border-gray-300 rounded"
+                className="dark:bg-gray-800 mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 rows={3}
               />
             </div>

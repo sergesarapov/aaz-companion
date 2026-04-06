@@ -201,7 +201,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={localOperative.name}
                   onChange={handleInputChange}
                   placeholder="Name"
-                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
               </div>
               <div>
@@ -218,7 +218,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={localOperative.echo}
                   onChange={handleInputChange}
                   placeholder="Echo"
-                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
               </div>
             </div>
@@ -237,7 +237,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={localOperative.money}
                   onChange={handleInputChange}
                   placeholder="Money"
-                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                   min="0"
                 />
               </div>
@@ -255,7 +255,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={localOperative.xp}
                   onChange={handleInputChange}
                   placeholder="XP"
-                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                   min="0"
                 />
               </div>
@@ -273,7 +273,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={localOperative.food}
                   onChange={handleInputChange}
                   placeholder="Food"
-                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                   min="0"
                 />
               </div>
@@ -291,7 +291,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={localOperative.attack}
                   onChange={handleInputChange}
                   placeholder="Attack"
-                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
               </div>
               <div>
@@ -308,7 +308,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={localOperative.defense}
                   onChange={handleInputChange}
                   placeholder="Defense"
-                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                  className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
               </div>
             </div>
@@ -328,7 +328,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                 value={localOperative.fullLife}
                 onChange={handleInputChange}
                 placeholder="Full Life"
-                className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 min="0"
               />
             </div>
@@ -346,7 +346,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                 value={localOperative.currentLife}
                 onChange={handleInputChange}
                 placeholder="Current Life"
-                className="dark:bg-gray-800 w-[100px] mt-1 block p-2 border border-gray-300 rounded"
+                className="dark:bg-gray-800 w-[100px] mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 min="0"
                 max={localOperative.fullLife}
               />
@@ -367,7 +367,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                 value={localOperative.fullRadResistance}
                 onChange={handleInputChange}
                 placeholder="Full Rad Resistance"
-                className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded"
+                className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 min="0"
               />
             </div>
@@ -385,7 +385,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                 value={localOperative.currentRadResistance}
                 onChange={handleInputChange}
                 placeholder="Current Rad Resistance"
-                className="dark:bg-gray-800 w-[100px] mt-1 block p-2 border border-gray-300 rounded"
+                className="dark:bg-gray-800 w-[100px] mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 min="0"
                 max={localOperative.fullRadResistance}
               />
@@ -412,13 +412,13 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                 value={newEquipment}
                 onChange={(e) => setNewEquipment(e.target.value)}
                 placeholder="Equipment Name"
-                className="max-w-[216px] dark:bg-gray-800 p-2 border border-gray-300 rounded"
+                className="max-w-[216px] dark:bg-gray-800 p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
               <button
                 onClick={addEquipment}
                 className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
               >
-                + Add Equipment
+                + Add item
               </button>
             </div>
           </div>
@@ -443,18 +443,18 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                 value={newSkill}
                 onChange={(e) => setNewSkill(e.target.value)}
                 placeholder="Skill Name"
-                className="max-w-[216px] dark:bg-gray-800 p-2 border border-gray-300 rounded"
+                className="max-w-[216px] dark:bg-gray-800 p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
               <button
                 onClick={addSkill}
                 className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
               >
-                + Add Skill
+                + Add skill
               </button>
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-lg font-semibold">Weapons</h3>
+            <h3 className="text-lg font-semibold">Weapons / Ammo</h3>
             {localOperative.weapons.map((weapon, index) => (
               <div key={index} className="flex space-x-2 mt-2 items-center">
                 <input
@@ -463,7 +463,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={weapon.name}
                   onChange={(e) => handleWeaponChange(index, e)}
                   placeholder="Weapon Name"
-                  className="max-w-[148px] dark:bg-gray-800 p-2 border border-gray-300 rounded"
+                  className="max-w-[148px] dark:bg-gray-800 p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
                 <input
                   type="number"
@@ -471,7 +471,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   value={weapon.ammo}
                   onChange={(e) => handleWeaponChange(index, e)}
                   placeholder="Ammo"
-                  className="dark:bg-gray-800 w-[60px] p-2 border border-gray-300 rounded"
+                  className="dark:bg-gray-800 w-[60px] p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                   min="0"
                 />
                 <label className="flex items-center space-x-1">
@@ -508,7 +508,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   })
                 }
                 placeholder="Weapon Name"
-                className="max-w-[148px] dark:bg-gray-800 p-2 border border-gray-300 rounded"
+                className="max-w-[148px] dark:bg-gray-800 p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
               <input
                 type="number"
@@ -520,14 +520,14 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   })
                 }
                 placeholder="Ammo"
-                className="dark:bg-gray-800 w-[60px] p-2 border border-gray-300 rounded"
+                className="dark:bg-gray-800 w-[60px] p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 min="0"
               />
               <button
                 onClick={addWeapon}
                 className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors"
               >
-                + Add Weapon
+                + Add weapon
               </button>
             </div>
           </div>
@@ -539,7 +539,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               value={localOperative.notes}
               onChange={handleInputChange}
               placeholder="Notes"
-              className="dark:bg-gray-800 mt-1 block w-1/2 p-2 border border-gray-300 rounded"
+              className="dark:bg-gray-800 mt-1 block w-1/2 p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </div>
           <div>

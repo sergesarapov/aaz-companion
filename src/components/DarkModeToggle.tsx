@@ -30,7 +30,7 @@ export const DarkModeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className={`p-2 rounded ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}
+      className={`p-2 rounded ${isDarkMode ? 'bg-zinc-800 text-white' : 'bg-gray-100/80 text-black'}`}
     >
       <span className="mr-2 text-sm">
         {isDarkMode ? 'Dark Mode' : 'Light Mode'}

@@ -31,7 +31,7 @@ const App: React.FC = () => {
         <Route path="/zone/:slug" element={<AloneAgainstZoneApp />} />
         <Route path="/" element={<Home />} />
       </Routes>
-      <footer className="dark:bg-gray-800 bg-gray-200 mt-8 py-4 px-6 text-center">
+      <footer className="dark:bg-zinc-900 bg-gray-100/80 mt-8 py-4 px-6 text-center">
         <p className="text-sm dark:text-slate-400 text-gray-600">
           Alone Against the Zone is a game by Alexey Aparin and Andrea Sfiligoi, published by Ganesha Games.
           <br />
