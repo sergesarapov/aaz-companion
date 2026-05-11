@@ -14,9 +14,11 @@ const App: React.FC = () => {
     <div className="min-h-[100vh] flex flex-col justify-between relative dark:bg-black dark:text-white max-w-screen-lg mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold place-self-start flex items-center gap-2">
-            AAZ Companion
-            <span className="text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 px-2 py-0.5 rounded-full">BETA</span>
-          </h1>
+          AAZ Companion
+          <span className="text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 px-2 py-0.5 rounded-full">
+            BETA
+          </span>
+        </h1>
         <div className="flex flex-col items-end gap-2">
           <DarkModeToggle />
           {/* <button
@@ -33,7 +35,8 @@ const App: React.FC = () => {
       </Routes>
       <footer className="dark:bg-zinc-900 bg-gray-100/80 mt-8 py-4 px-6 text-center">
         <p className="text-sm dark:text-slate-400 text-gray-600">
-          Alone Against the Zone is a game by Alexey Aparin and Andrea Sfiligoi, published by Ganesha Games.
+          Alone Against the Zone is a game by Alexey Aparin and Andrea Sfiligoi, published by
+          Ganesha Games.
           <br />
           Official website:{' '}
           <a
@@ -48,6 +51,16 @@ const App: React.FC = () => {
         <p className="text-sm dark:text-slate-400 text-gray-600 mt-2">
           Disclaimer: This companion app is not part of the official Alone Against the Zone game and
           is not affiliated with or endorsed by Ganesha Games.
+        </p>
+        <p className="text-sm dark:text-slate-400 text-gray-600 mt-2">
+          <a
+            href="https://buymeacoffee.com/sergesarapov"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-yellow-600 hover:underline dark:text-yellow-400"
+          >
+            Support the developer
+          </a>
         </p>
       </footer>
       {/* <HelpModal isOpen={isHelpModalOpen} onClose={() => setIsHelpModalOpen(false)} /> */}
