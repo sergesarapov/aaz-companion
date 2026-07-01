@@ -20,6 +20,7 @@ export interface Character {
   notes: string;
   id: string;
   key: string;
+  avatarUrl?: string;
 }
 
 export interface Encounter {
@@ -39,6 +40,11 @@ export interface LogEntryType {
 export interface Position {
   row: number;
   col: number;
+}
+
+export interface PathHex {
+  hex: string;
+  foodConsumed: boolean;
 }
 
 export type DoorOrientation = 'top' | 'bottom' | 'left' | 'right';

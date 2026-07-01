@@ -1,9 +1,10 @@
 import { useState, KeyboardEvent } from 'react';
-import { X } from 'lucide-react';
+import { Utensils, X } from 'lucide-react';
+import { PathHex } from '../types';
 
 interface PathProps {
-  hexes: string[];
-  onChange: (hexes: string[]) => void;
+  hexes: PathHex[];
+  onChange: (hexes: PathHex[]) => void;
 }
 
 export function Path({ hexes, onChange }: PathProps) {
@@ -12,12 +13,19 @@ export function Path({ hexes, onChange }: PathProps) {
   const addHex = () => {
     const val = input.trim();
     if (!val) return;
-    onChange([...hexes, val]);
+    onChange([...hexes, { hex: val, foodConsumed: false }]);
     setInput('');
   };
 
   const removeHex = (index: number) => {
     const updated = hexes.filter((_, i) => i !== index);
+    onChange(updated);
+  };
+
+  const toggleFoodConsumed = (index: number) => {
+    const updated = hexes.map((item, i) =>
+      i === index ? { ...item, foodConsumed: !item.foodConsumed } : item,
+    );
     onChange(updated);
   };
 
@@ -31,23 +39,38 @@ export function Path({ hexes, onChange }: PathProps) {
         {hexes.length === 0 && (
           <span className="text-gray-400 dark:text-zinc-500 text-sm italic">No hexes visited yet</span>
         )}
-        {hexes.map((hex, i) => (
-          <span
+        {hexes.map((item, i) => (
+          <div
             key={i}
-            className="inline-flex items-center gap-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 text-sm font-mono px-2 py-0.5 rounded"
+            className="inline-flex flex-col items-center gap-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 text-sm font-mono px-2 py-1 rounded"
           >
-            {i > 0 && (
-              <span className="text-emerald-400 dark:text-emerald-600 select-none mr-0.5">→</span>
-            )}
-            {hex}
+            <div className="inline-flex items-center gap-1">
+              {i > 0 && (
+                <span className="text-emerald-400 dark:text-emerald-600 select-none mr-0.5">→</span>
+              )}
+              {item.hex}
+              <button
+                onClick={() => removeHex(i)}
+                className="ml-1 text-emerald-500 dark:text-emerald-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                aria-label={`Remove hex ${item.hex}`}
+              >
+                <X size={12} />
+              </button>
+            </div>
             <button
-              onClick={() => removeHex(i)}
-              className="ml-1 text-emerald-500 dark:text-emerald-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
-              aria-label={`Remove hex ${hex}`}
+              onClick={() => toggleFoodConsumed(i)}
+              aria-pressed={item.foodConsumed}
+              aria-label={`Toggle food consumed at hex ${item.hex}`}
+              title="Food consumed"
+              className={`w-5 h-5 flex items-center justify-center rounded border transition-colors ${
+                item.foodConsumed
+                  ? 'bg-amber-500 border-amber-600 text-white'
+                  : 'bg-white dark:bg-zinc-800 border-gray-300 dark:border-zinc-600 text-gray-400 dark:text-zinc-500'
+              }`}
             >
-              <X size={12} />
+              <Utensils size={12} />
             </button>
-          </span>
+          </div>
         ))}
       </div>
       <div className="flex gap-2">

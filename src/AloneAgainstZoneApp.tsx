@@ -9,7 +9,7 @@ import { FloatingDice } from './components/FloatingDice';
 import { DiceRoller } from './components/DiceRoller';
 import { Path } from './components/Path';
 import { ulid } from 'ulid';
-import { Character, Encounter, LogEntryType, Position } from './types';
+import { Character, Encounter, LogEntryType, PathHex, Position } from './types';
 import { type HexGridState, INIT_COLS, INIT_ROWS } from './components/HexGrid';
 
 const AdventureLogInput = memo(({ onAdd }: { onAdd: (text: string) => void }) => {
@@ -62,6 +62,8 @@ export const AloneAgainstZoneApp: React.FC = () => {
           const char = JSON.parse(savedOperativeData) as Character;
           return {
             ...char,
+            xp: +char.xp,
+            food: +char.food,
             money: +char.money,
             attack: +char.attack,
             defense: +char.defense,
@@ -105,7 +107,15 @@ export const AloneAgainstZoneApp: React.FC = () => {
   const [surgeWarnings, setSurgeWarnings] = useState<number>(
     savedSurgeWarnings ? JSON.parse(savedSurgeWarnings) : 0,
   );
-  const [pathHexes, setPathHexes] = useState<string[]>(savedPath ? JSON.parse(savedPath) : []);
+  const [pathHexes, setPathHexes] = useState<PathHex[]>(() => {
+    if (!savedPath) return [];
+    const parsed = JSON.parse(savedPath) as (string | PathHex)[];
+    return parsed.map((item) =>
+      typeof item === 'string'
+        ? { hex: item, foodConsumed: false }
+        : { ...item, foodConsumed: item.foodConsumed ?? false },
+    );
+  });
 
   const [hexState, setHexState] = useState<HexGridState>(() => {
     if (savedHexGrid) {
@@ -124,6 +134,8 @@ export const AloneAgainstZoneApp: React.FC = () => {
       const char = JSON.parse(savedOperativeData) as Character;
       setOperative({
         ...char,
+        xp: +char.xp,
+        food: +char.food,
         money: +char.money,
         attack: +char.attack,
         defense: +char.defense,
@@ -263,17 +275,6 @@ export const AloneAgainstZoneApp: React.FC = () => {
           Save Progress
         </button>
       </div>
-      <div className="dark:bg-zinc-900 bg-gray-100/80  p-4 space-y-2 rounded">
-        <h2 className="text-lg font-bold mb-4 dark:text-white text-gray-800">Zone Exploration</h2>
-        <DiceRoller title="Exploration (2d6)" d="2d6" />
-        <DiceRoller title="Terrain and feature (d6)" d="d6" />
-        <DiceRoller title="Encounters / Items table (d6)" d="d6" />
-        <hr />
-        <DiceRoller title="Encounter / Item type (d66)" d="d66" />
-        <DiceRoller title="Encounter / Item type (d6)" d="d6" />
-        <DiceRoller title="Encounter / Item type (2d6)" d="2d6" />
-      </div>
-      <SurgeWarnings filled={surgeWarnings} setFilled={setSurgeWarnings} />
       <HexGrid
         hexState={hexState}
         setHexState={setHexState}
@@ -282,6 +283,15 @@ export const AloneAgainstZoneApp: React.FC = () => {
       />
       <h2 className="text-xl font-bold mt-6 mb-2">Path</h2>
       <Path hexes={pathHexes} onChange={setPathHexes} />
+      <SurgeWarnings filled={surgeWarnings} setFilled={setSurgeWarnings} />
+      <div className="dark:bg-zinc-900 bg-gray-100/80  p-4 space-y-2 rounded">
+        <h2 className="text-lg font-bold mb-4 dark:text-white text-gray-800">Zone Exploration</h2>
+        <div className="flex flex-wrap gap-2">
+          <DiceRoller title="d6" d="d6" />
+          <DiceRoller title="2d6" d="2d6" />
+          <DiceRoller title="d66" d="d66" />
+        </div>
+      </div>
       <h2 className="text-xl font-bold mt-6 mb-2">Operative</h2>
       <OperativeCard key={operative.id} operative={operative} setOperative={handleSetOperative} />
       <h2 className="text-xl font-bold mt-6 mb-2">Encounters</h2>

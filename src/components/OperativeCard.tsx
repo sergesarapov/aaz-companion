@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dice6, X } from 'lucide-react';
+import { Dice6, User, X } from 'lucide-react';
 import { Character } from '../types';
 
 interface OperativeCardProps {
@@ -153,6 +153,34 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
     }));
   };
 
+  const incrementMoney = (): void => {
+    setLocalOperative((prev) => ({
+      ...prev,
+      money: prev.money + 1,
+    }));
+  };
+
+  const decrementMoney = (): void => {
+    setLocalOperative((prev) => ({
+      ...prev,
+      money: Math.max(prev.money - 1, 0),
+    }));
+  };
+
+  const incrementXp = (): void => {
+    setLocalOperative((prev) => ({
+      ...prev,
+      xp: prev.xp + 1,
+    }));
+  };
+
+  const decrementXp = (): void => {
+    setLocalOperative((prev) => ({
+      ...prev,
+      xp: Math.max(prev.xp - 1, 0),
+    }));
+  };
+
   const incrementLife = (): void => {
     setLocalOperative((prev) => ({
       ...prev,
@@ -219,6 +247,23 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
                   onChange={handleInputChange}
                   placeholder="Echo"
                   className="w-[100px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="avatarUrl"
+                  className="block text-sm dark:text-slate-400 font-medium text-gray-700"
+                >
+                  Avatar URL
+                </label>
+                <input
+                  type="text"
+                  id="avatarUrl"
+                  name="avatarUrl"
+                  value={localOperative.avatarUrl ?? ''}
+                  onChange={handleInputChange}
+                  placeholder="https://..."
+                  className="w-[220px] dark:bg-gray-800 mt-1 block p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
               </div>
             </div>
@@ -454,7 +499,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-lg font-semibold">Weapons / Ammo</h3>
+            <h3 className="text-lg font-semibold">Weapons / Ammo / Consumables</h3>
             {localOperative.weapons.map((weapon, index) => (
               <div key={index} className="flex space-x-2 mt-2 items-center">
                 <input
@@ -559,7 +604,20 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
           <div className="flex justify-between mb-4">
             <div>
               <h2 className="text-xl font-bold">{localOperative.name}</h2>
-              <p className="text-sm dark:text-slate-400 text-gray-500">{localOperative.echo}</p>
+              <div className="w-24 h-24 mt-2 rounded overflow-hidden bg-gray-200 dark:bg-zinc-800 flex items-center justify-center">
+                {localOperative.avatarUrl ? (
+                  <img
+                    src={localOperative.avatarUrl}
+                    alt={localOperative.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <User className="text-gray-400 dark:text-zinc-600" size={40} />
+                )}
+              </div>
+              <p className="text-sm dark:text-slate-400 text-gray-500 mt-2">
+                <strong>Echo:</strong> {localOperative.echo}
+              </p>
             </div>
             <div>
               <button
@@ -570,9 +628,37 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               </button>
             </div>
           </div>
-          <div className="flex items-center gap-4 text-sm dark:text-slate-400 text-gray-500 mb-4">
-            <span><strong>Money:</strong> {localOperative.money} ₽</span>
-            <span><strong>XP:</strong> {localOperative.xp}</span>
+          <div className="flex items-center flex-wrap gap-4 text-sm dark:text-slate-400 text-gray-500 mb-4">
+            <span className="flex items-center gap-2">
+              <strong>Money:</strong> {localOperative.money} ₽
+              <button
+                onClick={incrementMoney}
+                className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition-colors"
+              >
+                +1
+              </button>
+              <button
+                onClick={decrementMoney}
+                className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
+              >
+                -1
+              </button>
+            </span>
+            <span className="flex items-center gap-2">
+              <strong>XP:</strong> {localOperative.xp}
+              <button
+                onClick={incrementXp}
+                className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition-colors"
+              >
+                +1
+              </button>
+              <button
+                onClick={decrementXp}
+                className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
+              >
+                -1
+              </button>
+            </span>
             <span className="flex items-center gap-2">
               <strong>Food:</strong> {localOperative.food}
               <button
@@ -589,46 +675,38 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               </button>
             </span>
           </div>
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center space-x-6">
-              <div>
-                <div className="flex items-center space-x-2">
-                  <p className="text-sm dark:text-slate-400 text-gray-500 mb-0">
-                    <strong>Life:</strong> {localOperative.currentLife}/{localOperative.fullLife}
-                  </p>
-                  <button
-                    onClick={incrementLife}
-                    className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition-colors"
-                  >
-                    +1
-                  </button>
-                  <button
-                    onClick={decrementLife}
-                    className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
-                  >
-                    -1
-                  </button>
-                </div>
-                <div className="flex items-center space-x-2 mt-2">
-                  <p className="text-sm dark:text-slate-400 text-gray-500 mb-0">
-                    <strong>Rad Res:</strong> {localOperative.currentRadResistance}/
-                    {localOperative.fullRadResistance}
-                  </p>
-                  <button
-                    onClick={incrementRadResistance}
-                    className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition-colors"
-                  >
-                    +1
-                  </button>
-                  <button
-                    onClick={decrementRadResistance}
-                    className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
-                  >
-                    -1
-                  </button>
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center flex-wrap gap-4 text-sm dark:text-slate-400 text-gray-500 mb-4">
+            <span className="flex items-center gap-2">
+              <strong>Life:</strong> {localOperative.currentLife}/{localOperative.fullLife}
+              <button
+                onClick={incrementLife}
+                className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition-colors"
+              >
+                +1
+              </button>
+              <button
+                onClick={decrementLife}
+                className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
+              >
+                -1
+              </button>
+            </span>
+            <span className="flex items-center gap-2">
+              <strong>Rad Res:</strong> {localOperative.currentRadResistance}/
+              {localOperative.fullRadResistance}
+              <button
+                onClick={incrementRadResistance}
+                className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition-colors"
+              >
+                +1
+              </button>
+              <button
+                onClick={decrementRadResistance}
+                className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
+              >
+                -1
+              </button>
+            </span>
           </div>
           <div className="flex flex-col gap-3 mb-4">
             <div className="flex items-center gap-3 flex-wrap">
@@ -703,7 +781,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
 
           <div className="mt-4 space-y-6">
             <div className="md:w-1/2">
-              <h3 className="text-sm dark:text-slate-400 text-gray-500 font-semibold mb-1">
+              <h3 className="text-sm dark:text-slate-400 text-gray-500 font-semibold mb-1 underline">
                 Equipment
               </h3>
               <ul className="text-sm dark:text-slate-300 text-gray-700 list-none">
@@ -713,7 +791,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               </ul>
             </div>
             <div className="md:w-1/2">
-              <h3 className="text-sm dark:text-slate-400 text-gray-500 font-semibold mb-1">
+              <h3 className="text-sm dark:text-slate-400 text-gray-500 font-semibold mb-1 underline">
                 Skills
               </h3>
               <ul className="text-sm dark:text-slate-300 text-gray-700 list-none">
@@ -723,8 +801,8 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
               </ul>
             </div>
             <div className="md:w-1/2 mt-4 md:mt-0">
-              <h3 className="text-sm dark:text-slate-400 text-gray-500 font-semibold mb-1">
-                Weapons
+              <h3 className="text-sm dark:text-slate-400 text-gray-500 font-semibold mb-1 underline">
+                Weapons / Consumables
               </h3>
               <ul className="text-sm dark:text-slate-300 text-gray-700 list-none">
                 {localOperative.weapons.map((weapon, index) => (
@@ -765,7 +843,7 @@ export const OperativeCard: React.FC<OperativeCardProps> = ({ operative, setOper
           </div>
 
           <div className="mt-4 text-sm dark:text-slate-400 text-gray-500">
-            <strong>Notes:</strong>
+            <strong className="underline">Notes:</strong>
             <p className="whitespace-pre-wrap text-sm dark:text-slate-300 text-gray-700 mt-1">
               {localOperative.notes}
             </p>
