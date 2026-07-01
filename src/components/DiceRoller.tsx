@@ -40,7 +40,7 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({ title, d }) => {
   return (
     <div className="rounded">
       <h3 className="mb-2 text-lg font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
-      <div className="flex items-center gap-3 flex-wrap">
+      <div className="flex items-center gap-1 flex-wrap">
         <button
           onClick={rollDice}
           disabled={isRolling}
@@ -62,13 +62,11 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({ title, d }) => {
           </div>
         </button>
 
-        {result !== null && (
-          <div className="animate-bounce-in">
-            <div className="bg-gradient-to-br from-zinc-500 to-zinc-600 text-white px-2 py-1 rounded shadow-lg flex items-center justify-center min-w-[40px] h-[40px]">
-              <p className="text-2xl font-bold">{result}</p>
-            </div>
+        <div className={`min-w-[40px] h-[40px] ${result === null ? 'invisible' : 'animate-bounce-in'}`}>
+          <div className="bg-gradient-to-br from-zinc-500 to-zinc-600 text-white px-2 py-1 rounded shadow-lg flex items-center justify-center min-w-[40px] h-[40px]">
+            <p className="text-2xl font-bold">{result ?? 0}</p>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
